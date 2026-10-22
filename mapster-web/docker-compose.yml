@@ -1,0 +1,20 @@
+services:
+  app:
+    build: .
+    env_file: .env
+    environment:
+      MONGO_URL: mongodb://mongo:27017/mapster
+      REDIS_URL: redis://redis:6379
+    ports: ["8080:8080"]
+    depends_on: [mongo, redis]
+    restart: unless-stopped
+  mongo:
+    image: mongo:7
+    volumes: [mongo:/data/db]
+    restart: unless-stopped
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: [redis:/data]
+    restart: unless-stopped
+volumes: { mongo: {}, redis: {} }

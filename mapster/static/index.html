@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mapster Outreach</title>
+<style>
+:root{--bg:#f4f5f9;--surface:#fff;--soft:#f8f9fc;--ink:#0f172a;--mute:#64748b;--line:#e6e8ef;--brand:#1f3a8a;--brand2:#2f52c4;--accent:#ea6a1f;
+--ok:#15803d;--okbg:#e7f6ec;--warn:#b45309;--warnbg:#fef3e2;--info:#1d4ed8;--infobg:#e8effd;--bad:#b91c1c;--badbg:#fdeaea;--vio:#6d28d9;--viobg:#f0eafd;--gray:#475569;--graybg:#eef0f5;
+--shadow:0 1px 2px rgba(15,23,42,.06),0 8px 24px rgba(15,23,42,.06)}
+@media(prefers-color-scheme:dark){:root{--bg:#0b0d14;--surface:#141722;--soft:#101320;--ink:#e8eaf3;--mute:#8d93a8;--line:#252a3b;--brand:#9db4ff;--brand2:#7f9bff;--accent:#ff9150;
+--ok:#4ade80;--okbg:#10291b;--warn:#fbbf24;--warnbg:#2c2210;--info:#93b4ff;--infobg:#16224a;--bad:#ff8b8b;--badbg:#321517;--vio:#c4a8ff;--viobg:#241a45;--gray:#a3abc0;--graybg:#1d2130;--shadow:0 8px 28px rgba(0,0,0,.5)}}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;font:14px/1.5 -apple-system,"Segoe UI",Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}input,textarea,select{font:inherit;color:inherit}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:9px;border:1px solid var(--line);background:var(--surface);font-weight:550;transition:.12s;white-space:nowrap}
+.btn:hover{border-color:var(--brand2);transform:translateY(-1px)}.btn:disabled{opacity:.45;pointer-events:none}
+.btn.pri{background:var(--brand);border-color:var(--brand);color:#fff}@media(prefers-color-scheme:dark){.btn.pri{color:#0b0d14}}
+.btn.acc{background:var(--accent);border-color:var(--accent);color:#fff}.btn.dng{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 40%,var(--line))}
+.btn.sm{padding:4px 10px;font-size:12.5px;border-radius:8px}.btn.ghost{border-color:transparent;background:transparent}
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .in{max-width:1280px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.04em;font-size:17px}
+.logo i{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;color:#fff;font-style:normal;font-size:15px}
+.logo small{display:block;font-weight:500;letter-spacing:0;color:var(--mute);font-size:11.5px;margin-top:-3px}
+.sp{flex:1}.search{position:relative;min-width:220px;flex:0 1 320px}.top .search input{width:100%;padding:8px 34px 8px 36px;border-radius:10px;border:1px solid var(--line);background:var(--soft)}
+.search:before{content:"\2315";position:absolute;left:13px;top:5px;color:var(--mute);font-size:17px;z-index:1}.search kbd{position:absolute;right:9px;top:8px;font-size:11px;color:var(--mute);border:1px solid var(--line);border-radius:5px;padding:0 5px}
+.switch{display:flex;align-items:center;gap:8px;font-weight:550;cursor:pointer;user-select:none}
+.switch input{display:none}.switch s{width:38px;height:22px;border-radius:99px;background:var(--line);position:relative;transition:.15s;text-decoration:none}
+.switch s:after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:.15s}
+.switch input:checked+s{background:var(--ok)}.switch input:checked+s:after{left:19px}
+.banner{background:var(--warnbg);color:var(--warn);padding:8px 20px;text-align:center;font-weight:550;font-size:13px}
+/* page */
+.wrap{max-width:1280px;margin:auto;padding:20px 20px 120px}
+.stats{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+@media(max-width:1000px){.stats{grid-template-columns:repeat(4,1fr)}}@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;text-align:left;transition:.12s;position:relative;overflow:hidden}
+.stat:hover{transform:translateY(-2px);box-shadow:var(--shadow)}.stat.on{border-color:var(--brand2);box-shadow:0 0 0 2px color-mix(in srgb,var(--brand2) 25%,transparent)}
+.stat b{display:block;font-size:26px;line-height:1.1;font-weight:750}.stat span{color:var(--mute);font-size:12.5px;font-weight:550}
+.stat:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c,var(--line))}
+.bar{display:flex;align-items:center;gap:10px;margin:18px 0 10px;flex-wrap:wrap}
+.seg{display:inline-flex;background:var(--graybg);border-radius:10px;padding:3px}.seg button{border:0;background:transparent;padding:5px 13px;border-radius:8px;font-weight:600;color:var(--mute)}
+.seg button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.th,.tr{display:grid;grid-template-columns:34px minmax(180px,2.2fr) 120px 120px minmax(150px,1.6fr) 150px;gap:10px;align-items:center;padding:10px 14px}
+.th{background:var(--soft);color:var(--mute);font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line)}
+.th span.sort{cursor:pointer}.tr{border-bottom:1px solid var(--line);cursor:pointer;transition:.1s}.tr:last-child{border-bottom:0}.tr:hover{background:var(--soft)}.tr.cur{background:var(--infobg)}
+.who{min-width:0}.who b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.who small{color:var(--mute);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nx{color:var(--mute);font-size:13px}.act{text-align:right;display:flex;gap:6px;justify-content:flex-end}
+@media(max-width:900px){.th{display:none}.tr{grid-template-columns:30px 1fr auto;grid-template-areas:"c w a" ". s s" ". n n"}.tr>:nth-child(1){grid-area:c}.tr>:nth-child(2){grid-area:w}.tr>:nth-child(3){display:none}.tr>:nth-child(4){grid-area:s}.tr>:nth-child(5){grid-area:n}.tr>:nth-child(6){grid-area:a}}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:650;padding:2px 10px;border-radius:99px;background:var(--graybg);color:var(--gray);white-space:nowrap}
+.pill:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.p-review{background:var(--warnbg);color:var(--warn)}.p-ready{background:var(--infobg);color:var(--info)}.p-sent{background:var(--okbg);color:var(--ok)}.p-replied{background:var(--viobg);color:var(--vio)}.p-stopped,.p-bounced{background:var(--badbg);color:var(--bad)}
+.cat{font-size:12px;font-weight:600;color:var(--mute)}.cat.net{color:var(--vio)}.cat.cli{color:var(--brand)}
+.empty{padding:50px 20px;text-align:center;color:var(--mute)}.empty h3{margin:0 0 6px;color:var(--ink);font-size:17px}
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(10,12,20,.45);opacity:0;pointer-events:none;transition:.2s;z-index:40}.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(640px,100vw);background:var(--surface);z-index:41;transform:translateX(104%);transition:transform .25s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.drawer.on{transform:none}.dh{padding:16px 20px 0;border-bottom:1px solid var(--line)}.dh .t{display:flex;gap:12px;align-items:flex-start}.dh h2{margin:0;font-size:19px}.dh .sub{color:var(--mute);font-size:13px}
+.tabs{display:flex;gap:4px;margin-top:12px}.tabs button{border:0;background:none;padding:9px 14px;font-weight:650;color:var(--mute);border-bottom:2px solid transparent}.tabs button.on{color:var(--brand);border-color:var(--brand2)}
+.db{flex:1;overflow:auto;padding:18px 20px}.df{padding:12px 20px;border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap;background:var(--soft)}
+label{display:block;font-size:12px;font-weight:650;color:var(--mute);margin:12px 0 4px}label:first-child{margin-top:0}
+input[type=text],input[type=email],input:not([type]),textarea,select{width:100%;padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:var(--soft);outline:none;transition:.12s}
+input:focus,textarea:focus,select:focus{border-color:var(--brand2);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand2) 22%,transparent);background:var(--surface)}
+textarea{resize:vertical;min-height:220px;line-height:1.55}.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}@media(max-width:560px){.g2{grid-template-columns:1fr}}
+.hint{font-size:12px;color:var(--mute);margin-top:4px;display:flex;justify-content:space-between}.hint .bad{color:var(--bad);font-weight:650}.hint .good{color:var(--ok);font-weight:650}
+.mail{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.mail .h{background:var(--soft);padding:10px 14px;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--mute)}.mail .h div{margin:1px 0}.mail .h b{color:var(--ink)}
+.mail .b{padding:14px 16px;white-space:pre-wrap;font-size:14.5px;line-height:1.6}.att{display:inline-flex;gap:8px;align-items:center;margin:0 16px 14px;padding:6px 12px;border:1px solid var(--line);border-radius:9px;color:var(--brand);text-decoration:none;font-weight:600;font-size:13px;background:var(--soft)}
+.sec{margin:18px 0 6px;font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px}.sec small{font-weight:500;color:var(--mute)}
+.sig{color:var(--mute);white-space:pre-wrap;font-size:13px;margin-top:8px;padding-left:10px;border-left:3px solid var(--line)}
+.tl{position:relative;margin-left:8px;padding-left:22px;border-left:2px solid var(--line)}.tl div{position:relative;margin-bottom:16px}.tl div:before{content:"";position:absolute;left:-29px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--ok);border:2px solid var(--surface)}
+.tl div.fut:before{background:var(--line)}.tl b{display:block}.tl small{color:var(--mute)}
+/* bulk + dock */
+.bulk{position:fixed;left:50%;bottom:22px;transform:translate(-50%,250%);opacity:0;pointer-events:none;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:14px;display:flex;gap:8px;align-items:center;z-index:30;box-shadow:var(--shadow);transition:.2s;flex-wrap:wrap;max-width:96vw}
+.bulk.on{transform:translate(-50%,0);opacity:1;pointer-events:auto}.bulk .btn{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 30%,transparent)}.bulk .btn:hover{border-color:var(--bg)}
+.dock{position:fixed;right:18px;bottom:18px;z-index:35;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.logbox{width:min(520px,92vw);background:#0d0f17;color:#d3d6e6;border-radius:12px;padding:12px;font:12px/1.5 ui-monospace,Consolas,monospace;max-height:260px;overflow:auto;white-space:pre-wrap;display:none;box-shadow:var(--shadow)}.logbox.on{display:block}
+.chipb{background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:7px 14px;box-shadow:var(--shadow);font-weight:600;display:flex;gap:8px;align-items:center}
+.spin{width:12px;height:12px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--accent);animation:sp .8s linear infinite;display:none}.run .spin{display:block}@keyframes sp{to{transform:rotate(360deg)}}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok)}.run .dot{display:none}
+.toasts{position:fixed;top:76px;right:18px;z-index:80;display:flex;flex-direction:column;gap:8px}.toast{background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:11px;box-shadow:var(--shadow);animation:in .2s;max-width:340px;font-weight:550}
+.toast.err{background:var(--bad);color:#fff}.toast.ok{border-left:4px solid var(--ok)}@keyframes in{from{opacity:0;transform:translateY(-8px)}}
+.modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(10,12,20,.5)}.modal.on{display:flex}
+.mbox{background:var(--surface);border-radius:16px;padding:22px;width:min(560px,100%);box-shadow:var(--shadow);max-height:92vh;overflow:auto}.mbox h3{margin:0 0 6px;font-size:17px}.mbox p{color:var(--mute);margin:0 0 14px}.mbox .row{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.help{color:var(--mute);font-size:12px;text-align:center;margin-top:18px}
+</style></head><body>
+<div id="banner"></div>
+<div class="top"><div class="in">
+ <div class="logo"><i>M</i><div>MAPSTER<small>Outreach control panel</small></div></div>
+ <div class="search"><input id="q" placeholder="Search name, event, email" autocomplete="off"><kbd>/</kbd></div>
+ <div class="sp"></div>
+ <label class="switch" style="margin:0" title="While this window is open: every 30 minutes it sends approved emails and due follow ups, inside sending hours"><input type="checkbox" id="ap"><s></s><span style="color:var(--ink);font-size:14px">Autopilot</span></label>
+ <button class="btn" id="bTpl">Follow up messages</button>
+ <button class="btn acc" id="bRev">Review drafts</button>
+ <button class="btn pri" id="bAdd">+ Add contact</button>
+</div></div>
+<div class="wrap">
+ <div class="stats" id="stats"></div>
+ <div class="bar">
+  <div class="seg" id="cats"></div><div class="sp"></div>
+  <span class="nx" id="meta"></span>
+  <button class="btn sm" id="bGen">Generate all new</button><button class="btn sm" id="bDry">Dry run</button><button class="btn sm acc" id="bSend">Send all approved</button>
+ </div>
+ <div class="card"><div class="th"><input type="checkbox" id="all"><span class="sort" data-s="name">Contact</span><span>Type</span><span class="sort" data-s="status">Status</span><span>Next step</span><span></span></div><div id="rows"></div></div>
+ <div class="help">Shortcuts: <b>/</b> search &nbsp; <b>N</b> new contact &nbsp; <b>Esc</b> close &nbsp; <b>Ctrl+S</b> save</div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer"></aside>
+<div class="bulk" id="bulk"></div>
+<div class="dock" id="dock"><div class="logbox" id="log">Nothing yet.</div><button class="chipb" id="dockb"><span class="dot"></span><span class="spin"></span><span id="dockt">Activity</span></button></div>
+<div class="toasts" id="toasts"></div>
+<div class="modal" id="modal"><div class="mbox" id="mbox"></div></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SIG="Best regards,\n\nRudraksh Singh Bhadauria\nFounder, Mapster\nhttps://mapster.co.in/ | +91-7987543938";
+let D={items:[],log:{},window:[9,19],gap:2,cap:25},ST={cat:'all',grp:'all',q:'',sort:'name',sel:new Set(),open:null,tab:'email',mode:'edit',isNew:false,dirty:false,showLog:false,openStatus:null};
+
+/* ---------- helpers ---------- */
+const GRP={'no draft':'needs',written:'needs',drafted:'review',approved:'ready',sent:'active',replied:'replied',stopped:'stopped',bounced:'stopped'};
+const LABEL={'no draft':'Needs email',written:'Written',drafted:'To review',approved:'Ready to send',sent:'Sent',replied:'Replied',stopped:'Stopped',bounced:'Bounced'};
+const PCLS={drafted:'p-review',approved:'p-ready',sent:'p-sent',replied:'p-replied',stopped:'p-stopped',bounced:'p-bounced'};
+const STATS=[['all','All contacts','var(--brand2)'],['needs','Need email','var(--gray)'],['review','To review','var(--warn)'],['ready','Ready','var(--info)'],['active','In follow ups','var(--ok)'],['replied','Replied','var(--vio)'],['stopped','Stopped','var(--bad)']];
+const item=e=>D.items.find(i=>i.email===e);
+function toast(m,k){const t=document.createElement('div');t.className='toast '+(k||'ok');t.textContent=m;$('#toasts').appendChild(t);setTimeout(()=>t.remove(),k==='err'?5000:2600)}
+function ask(title,text,ok='Confirm',danger){return new Promise(r=>{$('#mbox').innerHTML=`<h3>${esc(title)}</h3><p>${esc(text)}</p><div class="row"><button class="btn" id="mn">Cancel</button><button class="btn ${danger?'dng':'pri'}" id="my">${esc(ok)}</button></div>`;
+ $('#modal').classList.add('on');const done=v=>{$('#modal').classList.remove('on');r(v)};$('#mn').onclick=()=>done(false);$('#my').onclick=()=>done(true)})}
+function ago(iso){if(!iso)return'';const ms=new Date(iso)-new Date();if(ms<=0)return'due now';const h=Math.floor(ms/36e5),d=Math.floor(h/24);return d>0?`in ${d}d ${h%24}h`:h>0?`in ${h}h ${Math.floor(ms%36e5/6e4)}m`:`in ${Math.max(1,Math.floor(ms/6e4))}m`}
+function nextStep(i){switch(i.status){
+ case'no draft':return'Generate the email';case'written':return'Generate to build the draft';case'drafted':return'Waiting for your review';case'approved':return'Ready, waiting to be sent';
+ case'sent':return i.next_due?`Follow up ${i.followups_sent+1} ${ago(i.next_due)}`:'Follow ups finished';
+ case'replied':return'They replied, nothing more to send';case'bounced':return'Email bounced';case'stopped':return'Paused by you'}return''}
+function wc(t){return(t.trim().match(/\S+/g)||[]).length}
+async function api(u,b){try{const r=await(await fetch(u,{method:'POST',body:JSON.stringify(b||{})})).json();
+ if(r.msg==='busy'){toast('Another task is still running. Check the activity log.','err');return r}await load();return r}catch(e){toast('Request failed','err');return{}}}
+
+/* ---------- data ---------- */
+async function load(){try{D=await(await fetch('/api/items')).json()}catch(e){return}
+ renderTop();renderStats();renderRows();renderBulk();renderDock();
+ const it=ST.open&&item(ST.open);if(it&&!ST.dirty&&it.status!==ST.openStatus)renderDrawer()}
+function filtered(){let l=D.items.filter(i=>(ST.cat==='all'||i.category===ST.cat)&&(ST.grp==='all'||GRP[i.status]===ST.grp)&&
+ (i.email+i.contact.name+(i.contact.event||'')+(i.contact.org||'')).toLowerCase().includes(ST.q));
+ const order=['drafted','approved','no draft','written','sent','replied','stopped','bounced'];
+ return l.sort((a,b)=>ST.sort==='status'?order.indexOf(a.status)-order.indexOf(b.status):(a.contact.name||a.email).localeCompare(b.contact.name||b.email))}
+
+/* ---------- top / stats / table ---------- */
+function renderTop(){$('#ap').checked=D.autopilot;$('#banner').innerHTML=D.has_pw?'':'<div class="banner">Sending is off. Add GMAIL_APP_PASSWORD to the .env file and restart the panel.</div>';
+ const n=D.items.filter(i=>i.status==='drafted').length;$('#bRev').textContent=`Review drafts${n?' ('+n+')':''}`;$('#bRev').disabled=!n;
+ $('#meta').textContent=`Follow up every ${D.gap} days | sends ${D.window[0]}:00 to ${D.window[1]}:00 | ${D.cap}/day`}
+function renderStats(){const c={};D.items.forEach(i=>c[GRP[i.status]]=(c[GRP[i.status]]||0)+1);
+ $('#stats').innerHTML=STATS.map(([k,l,col])=>`<button class="stat ${ST.grp===k?'on':''}" style="--c:${col}" data-g="${k}"><b>${k==='all'?D.items.length:c[k]||0}</b><span>${l}</span></button>`).join('');
+ $('#stats').querySelectorAll('.stat').forEach(b=>b.onclick=()=>{ST.grp=b.dataset.g;renderStats();renderRows()});
+ const cc={all:D.items.length,client:D.items.filter(i=>i.category==='client').length,network:D.items.filter(i=>i.category==='network').length};
+ $('#cats').innerHTML=[['all','All'],['client','Clients'],['network','Network & investors']].map(([k,l])=>`<button class="${ST.cat===k?'on':''}" data-c="${k}">${l} ${cc[k]}</button>`).join('');
+ $('#cats').querySelectorAll('button').forEach(b=>b.onclick=()=>{ST.cat=b.dataset.c;renderStats();renderRows()})}
+function actBtn(i){switch(i.status){
+ case'no draft':case'written':return['Generate','pri','gen'];case'drafted':return['Review','acc','open'];case'approved':return['Send','pri','send'];
+ case'sent':return['Stop','dng','stop'];case'stopped':return['Resume','','resume']}return null}
+function renderRows(){const l=filtered();const R=$('#rows');
+ if(!D.items.length){R.innerHTML=`<div class="empty"><h3>No contacts yet</h3>Add your first client or investor to get started.<br><br><button class="btn pri" onclick="newContact()">+ Add contact</button></div>`;return}
+ if(!l.length){R.innerHTML='<div class="empty"><h3>Nothing matches</h3>Try a different filter or search.</div>';return}
+ R.innerHTML=l.map(i=>{const a=actBtn(i),c=i.contact;
+  return `<div class="tr ${ST.open===i.email?'cur':''}" data-e="${esc(i.email)}"><input type="checkbox" class="ck" ${ST.sel.has(i.email)?'checked':''}>
+  <div class="who"><b>${esc(c.name||i.email)}</b><small>${esc(c.event||c.org||'')}${c.event||c.org?' · ':''}${esc(i.email)}</small></div>
+  <div class="cat ${i.category==='network'?'net':'cli'}">${i.category==='network'?'Network':'Client'}</div>
+  <div><span class="pill ${PCLS[i.status]||''}">${LABEL[i.status]}</span></div><div class="nx">${esc(nextStep(i))}</div>
+  <div class="act">${a?`<button class="btn sm ${a[1]}" data-a="${a[2]}">${a[0]}</button>`:''}</div></div>`}).join('');
+ R.querySelectorAll('.tr').forEach(r=>{const e=r.dataset.e;
+  r.onclick=ev=>{if(ev.target.closest('.ck,.btn'))return;openDrawer(e)};
+  r.querySelector('.ck').onchange=ev=>{ev.target.checked?ST.sel.add(e):ST.sel.delete(e);renderBulk()};
+  const b=r.querySelector('[data-a]');if(b)b.onclick=ev=>{ev.stopPropagation();rowAction(e,b.dataset.a)}});
+ $('#all').checked=l.length&&l.every(i=>ST.sel.has(i.email))}
+async function rowAction(e,a){const i=item(e);
+ if(a==='open')return openDrawer(e);
+ if(a==='gen'){const r=await api('/api/gen',{email:e});if(r.ok)toast('Writing the email, this takes about 20 seconds');return}
+ if(a==='send'){if(await ask('Send now?',`Send the email to ${i.contact.name||e} now from mapster.officials@gmail.com? This cannot be undone.`,'Send')){const r=await api('/api/send_one',{email:e});if(r.ok)toast('Sending')}return}
+ if(a==='stop'){await api('/api/stop',{email:e,stopped:true});toast('Stopped. No more emails to '+(i.contact.name||e))}
+ if(a==='resume'){await api('/api/stop',{email:e,stopped:false});toast('Resumed')}}
+
+/* ---------- bulk ---------- */
+function renderBulk(){const n=ST.sel.size;const B=$('#bulk');B.classList.toggle('on',n>0);if(!n)return;
+ B.innerHTML=`<b>${n} selected</b><button class="btn sm" data-b="generate">Generate</button><button class="btn sm" data-b="approve">Approve</button><button class="btn sm" data-b="send">Send</button><button class="btn sm" data-b="stop">Stop</button><button class="btn sm" data-b="resume">Resume</button><button class="btn sm ghost" data-b="clear">Clear</button>`;
+ B.querySelectorAll('button').forEach(b=>b.onclick=async()=>{const a=b.dataset.b;if(a==='clear'){ST.sel.clear();renderRows();return renderBulk()}
+  const em=[...ST.sel];if(a==='send'&&!await ask('Send selected?',`Send every approved email among the ${n} selected now? Drafts you selected will be approved first.`,'Send'))return;
+  const r=await api('/api/bulk',{action:a,emails:em});if(r.msg==='none')toast('Nothing ready to send','err');else if(r.ok){toast(a==='generate'?'Writing emails, watch the activity log':'Done');if(a!=='send'&&a!=='generate'){}}ST.sel.clear();renderRows();renderBulk()})}
+
+/* ---------- dock / log ---------- */
+function renderDock(){const run=D.log.running;$('#dock').classList.toggle('run',run);$('#dockt').textContent=run?'Working...':'Activity';
+ const L=$('#log');L.classList.toggle('on',ST.showLog);if(ST.showLog){const atEnd=L.scrollTop+L.clientHeight>=L.scrollHeight-30;L.textContent=D.log.text||'Nothing yet.';if(atEnd)L.scrollTop=1e9}}
+$('#dockb').onclick=()=>{ST.showLog=!ST.showLog;renderDock()};
+let wasRun=false;setInterval(()=>{if(wasRun&&!D.log.running){toast('Task finished');ST.showLog=false}wasRun=!!D.log.running},1000);
+
+/* ---------- drawer ---------- */
+function openDrawer(e,tab){ST.open=e;ST.isNew=false;ST.tab=tab||'email';ST.mode='edit';ST.dirty=false;renderDrawer();$('#drawer').classList.add('on');$('#scrim').classList.add('on');renderRows()}
+function newContact(){ST.open=null;ST.isNew=true;ST.tab='contact';ST.dirty=false;renderDrawer();$('#drawer').classList.add('on');$('#scrim').classList.add('on')}
+async function closeDrawer(force){if(ST.dirty&&!force&&!await ask('Discard changes?','You have unsaved edits in this panel.','Discard',true))return;
+ ST.open=null;ST.isNew=false;ST.dirty=false;$('#drawer').classList.remove('on');$('#scrim').classList.remove('on');renderRows()}
+$('#scrim').onclick=()=>closeDrawer();
+function renderDrawer(){const i=ST.open?item(ST.open):null;const D_=$('#drawer');
+ if(!ST.isNew&&!i){D_.innerHTML='';return}ST.openStatus=i?i.status:null;
+ const c=i?i.contact:{category:ST.cat==='network'?'network':'client'};
+ const head=`<div class="dh"><div class="t"><div style="flex:1;min-width:0"><h2>${esc(ST.isNew?'New contact':c.name||i.email)}</h2><div class="sub">${esc(ST.isNew?'Add a client or an investor':(c.event||c.org||'')+(c.event||c.org?' · ':'')+i.email)}</div></div>
+  ${i?`<span class="pill ${PCLS[i.status]||''}">${LABEL[i.status]}</span>`:''}<button class="btn sm ghost" id="dx">&#10005;</button></div>
+  <div class="tabs">${(ST.isNew?[['contact','Contact']]:[['email','Email'],['contact','Contact'],['time','Timeline']]).map(([k,l])=>`<button data-t="${k}" class="${ST.tab===k?'on':''}">${l}</button>`).join('')}</div></div>`;
+ D_.innerHTML=head+'<div class="db" id="db"></div><div class="df" id="df"></div>';
+ $('#dx').onclick=()=>closeDrawer();D_.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{ST.tab=b.dataset.t;renderDrawer()});
+ ({email:tabEmail,contact:tabContact,time:tabTime})[ST.tab](i,c)}
+function inp(id,l,v,x=''){return`<div><label>${l}</label><input id="${id}" value="${esc(v||'')}" ${x}></div>`}
+function markDirty(){ST.dirty=true}
+/* contact tab */
+function tabContact(i,c){const lock=i&&i.status!=='no draft'&&i.status!=='written';
+ $('#db').innerHTML=`<div class="g2">${inp('f_name','Name',c.name)}${inp('f_email','Email',c.email,lock?'disabled title="Email cannot change once a draft exists"':'')}</div>
+ <label>Category</label><select id="f_category"><option value="client">Client: exhibition organizer</option><option value="network">Network: investor, advisor, connector</option></select>
+ <div class="g2">${inp('f_org','Organization',c.org)}${inp('f_event','Event',c.event)}</div>
+ ${inp('f_cover_name','Name on PDF cover (blank = event, then organization)',c.cover_name)}${inp('f_website','Website',c.website)}
+ <label>About: who they are and what they do</label><textarea id="f_about" style="min-height:130px" placeholder="The email is written from this. More real detail makes a better email.">${esc(c.about||'')}</textarea>
+ <div class="hint"><span>Tip: scale, audience, themes, and anything specific you know.</span></div>`;
+ $('#f_category').value=c.category||'client';document.querySelectorAll('#db input,#db textarea,#db select').forEach(x=>x.oninput=markDirty);
+ $('#df').innerHTML=`<button class="btn pri" id="sc">${i?'Save contact':'Add contact'}</button>${i?'<button class="btn dng" id="dc">Delete</button>':''}<span class="sp"></span><button class="btn" id="cl">Close</button>`;
+ $('#cl').onclick=()=>closeDrawer();$('#sc').onclick=saveContact;if($('#dc'))$('#dc').onclick=delContact}
+async function saveContact(){const b={};['name','email','category','org','event','cover_name','website','about'].forEach(k=>b[k]=$('#f_'+k).value);
+ if(!/^\S+@\S+\.\S+$/.test(b.email))return toast('Enter a valid email address','err');if(ST.open)b.old_email=ST.open;
+ await api('/api/contact',b);ST.dirty=false;toast(ST.open?'Contact saved':'Contact added');ST.open=b.email.toLowerCase();ST.isNew=false;ST.tab=ST.tab;renderDrawer();renderRows()}
+async function delContact(){if(!await ask('Delete contact?',`Remove ${ST.open} and any unsent draft?`,'Delete',true))return;await api('/api/delete',{email:ST.open});toast('Deleted');closeDrawer(true)}
+/* email tab */
+function tabEmail(i,c){const locked=['sent','replied','bounced','stopped'].includes(i.status);
+ if(!i.has_state&&i.status!=='written'){$('#db').innerHTML=`<div class="empty"><h3>No email yet</h3>Generate a ${i.category==='network'?'short intro email':'personalized email'} from this contact's details.</div>`;
+  $('#df').innerHTML=`<button class="btn pri" id="g">Generate email</button><span class="sp"></span><button class="btn" id="cl">Close</button>`;$('#g').onclick=async()=>{const r=await api('/api/gen',{email:i.email});if(r.ok){toast('Writing the email, about 20 seconds');ST.showLog=true;renderDock()}};$('#cl').onclick=()=>closeDrawer();return}
+ const editing=ST.mode==='edit'&&!locked;
+ $('#db').innerHTML=`${locked?'':`<div class="seg" style="margin-bottom:14px"><button data-m="edit" class="${editing?'on':''}">Edit</button><button data-m="prev" class="${editing?'':'on'}">Preview</button></div>`}<div id="body"></div>`;
+ $('#db').querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{if(editing){i.subject=$('#e_s').value;i.body=$('#e_b').value}ST.mode=b.dataset.m;tabEmail(i,c)});
+ if(editing){$('#body').innerHTML=`<label>Subject</label><input id="e_s" value="${esc(i.subject)}"><label>Body</label><textarea id="e_b">${esc(i.body)}</textarea>
+  <div class="hint"><span id="wcn"></span><span>No dashes. Signature is added automatically.</span></div><div class="sig">${esc(SIG)}</div>`;
+  const upd=()=>{const n=wc($('#e_b').value);$('#wcn').innerHTML=`<span class="${n>85?'bad':'good'}">${n} words</span> (target about 75)`};upd();
+  $('#e_s').oninput=markDirty;$('#e_b').oninput=()=>{markDirty();upd()}}
+ else renderPreview(i,c);
+ const fs=[];
+ if(!locked){fs.push(`<button class="btn" id="sv">Save</button>`);
+  if(i.status==='drafted'){fs.push(`<button class="btn pri" id="ap1">Approve & next</button>`)}
+  if(i.status==='approved')fs.push(`<button class="btn" id="un">Unapprove</button>`);
+  fs.push(`<button class="btn acc" id="sn">Send now</button>`);fs.push(`<button class="btn" id="ts" title="Sends a copy to your TEST_EMAIL only">Test to me</button>`);
+  fs.push(`<span class="sp"></span><button class="btn" id="rw">Rewrite</button>`)}
+ else{fs.push(i.stopped?`<button class="btn pri" id="rs">Resume follow ups</button>`:i.status==='sent'?`<button class="btn dng" id="sp">Stop follow ups</button>`:'');fs.push('<span class="sp"></span><button class="btn" id="cl">Close</button>')}
+ $('#df').innerHTML=fs.join('');const B=id=>$('#'+id);
+ if(B('sv'))B('sv').onclick=()=>saveEmail(true);
+ if(B('ap1'))B('ap1').onclick=async()=>{await saveEmail();await api('/api/status',{email:i.email,status:'approved'});toast('Approved');const nx=D.items.find(x=>x.status==='drafted'&&x.email!==i.email);nx?openDrawer(nx.email):closeDrawer(true)};
+ if(B('un'))B('un').onclick=async()=>{await api('/api/status',{email:i.email,status:'drafted'});toast('Back to draft')};
+ if(B('sn'))B('sn').onclick=async()=>{await saveEmail();if(await ask('Send now?',`Send this email to ${c.name||i.email} now? This cannot be undone.`,'Send')){const r=await api('/api/send_one',{email:i.email});if(r.ok){toast('Sending');ST.showLog=true;renderDock();closeDrawer(true)}}};
+ if(B('ts'))B('ts').onclick=async()=>{if(!D.has_pw)return toast('Set GMAIL_APP_PASSWORD and TEST_EMAIL in .env first','err');await saveEmail();const r=await api('/api/test',{email:i.email});if(r.ok){toast('Sending a test to your own address');ST.showLog=true;renderDock()}};
+ if(B('rw'))B('rw').onclick=async()=>{if(await ask('Rewrite this email?','The current text is discarded and a new one is written from the contact details.','Rewrite',true)){await api('/api/redraft',{email:i.email});const r=await api('/api/gen',{email:i.email});if(r.ok){toast('Writing a new email');ST.showLog=true;renderDock()}closeDrawer(true)}};
+ if(B('rs'))B('rs').onclick=async()=>{await api('/api/stop',{email:i.email,stopped:false});toast('Resumed')};
+ if(B('sp'))B('sp').onclick=async()=>{await api('/api/stop',{email:i.email,stopped:true});toast('Stopped')};
+ if(B('cl'))B('cl').onclick=()=>closeDrawer()}
+async function saveEmail(show){const i=item(ST.open);if($('#e_s')){i.subject=$('#e_s').value;i.body=$('#e_b').value}
+ await api('/api/save',{email:i.email,subject:i.subject,body:i.body});ST.dirty=false;if(show)toast('Saved')}
+async function renderPreview(i,c){$('#body').innerHTML=`<div class="mail"><div class="h"><div><b>From</b> MAPSTER &lt;mapster.officials@gmail.com&gt;</div><div><b>To</b> ${esc(c.name||'')} &lt;${esc(i.email)}&gt;</div><div><b>Subject</b> ${esc(i.subject)}</div></div>
+ <div class="b">${esc(i.body)}\n\n${esc(SIG)}</div><a class="att" target="_blank" href="/pdf/${encodeURIComponent(i.email)}">&#128206; ${i.category==='network'?'Mapster_Pitch_Deck.pdf':'Mapster_Pilot_Proposal.pdf'} <span style="color:var(--mute);font-weight:500">open to check${i.category==='network'?'':' (cover: '+esc(c.cover_name||c.event||c.org||c.name)+')'}</span></a></div>
+ <div class="sec">Next follow up <small>sent as a reply in the same thread, every ${D.gap} days until they reply</small></div><div class="mail" id="fu"><div class="b" style="color:var(--mute)">Loading...</div></div>`;
+ if(!i.has_state)return $('#fu').innerHTML='<div class="b" style="color:var(--mute)">Generate the draft to see follow ups.</div>';
+ try{const p=await(await fetch('/api/preview?email='+encodeURIComponent(i.email))).json();if(!$('#fu'))return;
+  $('#fu').innerHTML=`<div class="h"><div><b>Subject</b> ${esc(p.followup_subject)}</div></div><div class="b">${esc(p.followup_body)}</div>`}catch(e){}}
+/* timeline */
+function tabTime(i,c){const ev=[];ev.push(`<div><b>Contact added</b><small>${esc(c.category==='network'?'Network':'Client')}</small></div>`);
+ if(i.has_state||i.status==='written')ev.push(`<div><b>Email ${i.status==='drafted'?'drafted, waiting for review':'written'}</b></div>`);
+ i.sent.forEach((t,k)=>ev.push(`<div><b>${k===0?'Main email sent':'Follow up '+k+' sent'}</b><small>${esc(t)}</small></div>`));
+ if(i.status==='replied')ev.push('<div><b>They replied</b><small>Follow ups stopped automatically</small></div>');
+ if(i.status==='bounced')ev.push('<div><b>Email bounced</b><small>Check the address</small></div>');
+ if(i.stopped)ev.push('<div><b>Stopped by you</b><small>Press Resume to continue</small></div>');
+ else if(i.next_due)ev.push(`<div class="fut"><b>Follow up ${i.followups_sent+1} ${esc(ago(i.next_due))}</b><small>${esc(new Date(i.next_due).toLocaleString())}</small></div>`);
+ $('#db').innerHTML=`<div class="tl">${ev.join('')}</div>`;$('#df').innerHTML='<span class="sp"></span><button class="btn" id="cl">Close</button>';$('#cl').onclick=()=>closeDrawer()}
+
+/* ---------- top level wiring ---------- */
+$('#q').oninput=e=>{ST.q=e.target.value.toLowerCase();renderRows()};
+$('#all').onchange=e=>{filtered().forEach(i=>e.target.checked?ST.sel.add(i.email):ST.sel.delete(i.email));renderRows();renderBulk()};
+document.querySelectorAll('.th .sort').forEach(s=>s.onclick=()=>{ST.sort=s.dataset.s;renderRows()});
+$('#ap').onchange=async e=>{await api('/api/autopilot',{on:e.target.checked});toast(e.target.checked?`Autopilot on. Checks every 30 min, sends ${D.window[0]}:00 to ${D.window[1]}:00 while this window is open`:'Autopilot off')};
+$('#bAdd').onclick=newContact;
+$('#bRev').onclick=()=>{const n=D.items.find(i=>i.status==='drafted');if(n)openDrawer(n.email)};
+$('#bGen').onclick=async()=>{const r=await api('/api/gen',{});if(r.ok){toast('Writing emails for all new contacts');ST.showLog=true;renderDock()}};
+$('#bDry').onclick=async()=>{const r=await api('/api/run',{dry:true});if(r.ok){ST.showLog=true;renderDock()}};
+$('#bSend').onclick=async()=>{const n=D.items.filter(i=>i.status==='approved').length;if(!n)return toast('No approved emails yet. Review and approve drafts first.','err');
+ if(await ask('Send all approved?',`${n} approved email(s) go out now from mapster.officials@gmail.com, plus any follow ups that are due. This cannot be undone.`,'Send all')){const r=await api('/api/run',{dry:false});if(r.ok){ST.showLog=true;renderDock()}}};
+$('#bTpl').onclick=async()=>{const t=await(await fetch('/api/templates')).json();
+ const box=(k,l)=>`<label>${l}</label><textarea id="t_${k}" style="min-height:170px">${esc((t[k]||[]).join('\n\n'))}</textarea>`;
+ $('#mbox').innerHTML=`<h3>Follow up messages</h3><p>Separate messages with a blank line. Use {first}, {event} and {org}. They are sent in order, one every ${D.gap} days, then repeat.</p>${box('client','Clients')}${box('network','Network & investors')}
+ <div class="row"><button class="btn" id="mn">Cancel</button><button class="btn pri" id="my">Save</button></div>`;$('#modal').classList.add('on');
+ $('#mn').onclick=()=>$('#modal').classList.remove('on');
+ $('#my').onclick=async()=>{const g=k=>$('#t_'+k).value.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);await api('/api/templates',{client:g('client'),network:g('network')});$('#modal').classList.remove('on');toast('Follow up messages saved')}};
+document.addEventListener('keydown',e=>{const typing=/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName);
+ if(e.key==='Escape'){if($('#modal').classList.contains('on'))$('#modal').classList.remove('on');else closeDrawer()}
+ else if((e.ctrlKey||e.metaKey)&&e.key==='s'&&ST.open){e.preventDefault();if(ST.tab==='email')saveEmail(true);else if(ST.tab==='contact')saveContact()}
+ else if(!typing&&e.key==='/'){e.preventDefault();$('#q').focus()}else if(!typing&&e.key.toLowerCase()==='n'&&!e.ctrlKey){e.preventDefault();newContact()}});
+load().then(()=>{const m=location.hash.slice(1).split('/');if(m[0]&&item(decodeURIComponent(m[0]))){openDrawer(decodeURIComponent(m[0]));if(m[1]==='preview'){ST.mode='prev';renderDrawer()}}});setInterval(load,3000);
+</script></body></html>

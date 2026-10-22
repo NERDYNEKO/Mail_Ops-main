@@ -1,0 +1,77 @@
+"""Short follow up messages served from an editable pool (followup_templates.json)."""
+import json
+import random
+import zlib
+
+from .config import cfg
+from .text import clean, first_name
+
+DEFAULT_POOL = {
+    "client": [
+        "Hi {first}, just nudging my earlier note back up in case it got buried. I'd love to show you Mapster live for {event}, whenever suits you.",
+        "Hi {first}, one more thought on {event}. The stalls tucked away from the entrance are usually the ones nobody finds, and our treasure hunt fixes that. Could we do a quick call this week?",
+        "Hi {first}, the pilot for {event} is completely free and we do all the setup. Even ten minutes on a call would show you how it works.",
+        "Hi {first}, all we need to start is your floor plan and exhibitor list. Want me to send a few screens first so you can see how it looks?",
+        "Hi {first}, I know event teams are swamped. If someone else handles this, could you point me their way?",
+        "Hi {first}, you'd also get real visitor data after {event}, which sponsors love to see. Worth a quick look?",
+        "Hi {first}, I'm still keen to help with {event}. If the timing's off, just say so and I'll check back later.",
+        "Hi {first}, a quick yes or no on a call would really help me plan, and either answer is completely fine.",
+        "Hi {first}, picture a parent at {event} trying to find one particular stall in a huge hall. That's the exact problem Mapster solves, and I'd happily show you how in a few minutes.",
+        "Hi {first}, no sales pitch, promise. I'd just like to show you a working demo and hear what you think for {event}.",
+        "Hi {first}, wanted to check my email reached the right person. If you look after visitor experience for {event}, I'd love a short chat.",
+        "Hi {first}, we're offering this first pilot at no cost, so there's really nothing to lose by taking a look. Does this week or next suit you for a short call?",
+        "Hi {first}, the hardest part of a big event is often the stalls at the back getting missed. Mapster sends visitors there on purpose. Can I show you how?",
+        "Hi {first}, if a call is too much right now, I can email a few screens of the app instead. Just tell me what works for you.",
+    ],
+    "network": [
+        "Hi {first}, bringing my note back to your inbox. I'd really value 15 minutes of your thoughts on Mapster, even if it's only feedback.",
+        "Hi {first}, we're close to our first live pilot at an exhibition, and early guidance from people like you would mean a lot. Could we talk this week?",
+        "Hi {first}, happy to send a few screens of the app if that's easier than a call.",
+        "Hi {first}, if this isn't your area, could you point me to someone who might be a better fit? Even a name would help.",
+        "Hi {first}, I know your inbox must be full. A one line reply with a good time to talk is all I need.",
+        "Hi {first}, Mapster is already built and working, so I'm not asking you to back just an idea. Would a quick walk through help?",
+        "Hi {first}, a gentle nudge. Still keen to hear your views whenever you have a few minutes.",
+        "Hi {first}, last check in from me for now. If the timing's off, tell me and I'll reach out again later.",
+        "Hi {first}, no big ask here. Just a short chat to get your honest take on Mapster, and maybe an introduction or two if you see a fit.",
+        "Hi {first}, I'm building Mapster so visitors never get lost at big events, and I'd love an experienced pair of eyes on it. Do you have 15 minutes?",
+        "Hi {first}, wanted to make sure my first note didn't slip past you. Even a quick 'not now' helps me a lot.",
+        "Hi {first}, we're lining up our first exhibition pilot soon, and your perspective could shape where we go next. Open to a short call?",
+    ],
+}
+
+GREETINGS = ["Hi {first},", "Hey {first},", "Hello {first},", "{first},"]
+
+
+CLOSER_MARKERS = ("check back later", "check in from me", "yes or no", "reach out again")
+
+
+def save_pool(pool: dict):
+    cfg.followup_templates.write_text(json.dumps(pool, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def load_pool() -> dict:
+    if not cfg.followup_templates.exists():
+        save_pool(DEFAULT_POOL)
+    return json.loads(cfg.followup_templates.read_text(encoding="utf-8"))
+
+
+class _D(dict):
+    def __missing__(self, k):
+        return ""
+
+
+def followup_text(c: dict, n: int) -> str:
+    """Follow up number n (1 based). Order and greeting differ per person, so two contacts
+    never get the same sequence of messages. Closing messages always come last."""
+    pool = load_pool().get(c.get("category") or "client") or DEFAULT_POOL["client"]
+    seed = zlib.crc32((c.get("email") or c.get("name") or "x").lower().encode())
+    closers = [i for i, t in enumerate(pool) if any(k in t for k in CLOSER_MARKERS)]
+    rng = random.Random(seed)
+    rest = [i for i in range(len(pool)) if i not in closers]
+    order = rng.sample(rest, len(rest)) + rng.sample(closers, len(closers))
+    t = pool[order[(n - 1) % len(pool)]]
+    if t.startswith("Hi {first},"):
+        t = random.Random(seed * 31 + n).choice(GREETINGS) + t[len("Hi {first},"):]
+    return clean(t.format_map(_D(
+        first=first_name(c.get("name")), name=c.get("name", ""),
+        event=c.get("event") or c.get("org") or "your event", org=c.get("org") or "your organization")))

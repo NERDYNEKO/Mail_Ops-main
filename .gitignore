@@ -1,0 +1,33 @@
+# secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*credentials*
+*secret*
+token*.json
+
+# runtime data / personal data
+data/
+*.db
+*.sqlite*
+*.log
+*.migrated
+state.json
+settings.json
+contacts.csv
+out/
+written/
+legacy/state.json
+legacy/settings.json
+
+# deps / caches
+node_modules/
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
+dist/
+build/

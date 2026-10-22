@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Mapster Partnership Proposal</title>
+<style>
+@page{size:A4;margin:0}
+:root{--navy:#132159;--blue:#1f3a8a;--orange:#e8681c;--cream:#f6f4ed;--ink:#14142b;--mute:#5b5b6b;--line:#e3ded0;--peach:#fde9da}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:14.5px;line-height:1.55}
+.page{width:210mm;height:297mm;background:var(--cream);position:relative;overflow:hidden;page-break-after:always;break-after:page;display:flex;flex-direction:column}
+.page:last-child{page-break-after:auto;break-after:auto}
+.hd{display:flex;align-items:center;justify-content:space-between;margin:34px 52px 0;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.06em;color:var(--navy);font-size:15px}.brand img{height:30px}
+.tag{font-size:11px;letter-spacing:.14em;color:var(--mute);font-weight:600}
+.ct{flex:1;padding:24px 52px 12px;display:flex;flex-direction:column;gap:16px;min-height:0}.ct>*{flex:none}.ct>.grow{flex:1 1 auto;min-height:0}
+.ft{margin:0 52px;padding:12px 0 24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:11px;color:var(--mute)}
+h1{margin:0;font-size:31px;line-height:1.15;color:var(--navy);letter-spacing:-.01em}
+h2{margin:0;font-size:22px;color:var(--navy);line-height:1.2}
+.kick{font-size:11.5px;font-weight:700;letter-spacing:.16em;color:var(--orange);margin-bottom:6px}
+p{margin:0}.lead{font-size:15.5px;color:#2b2b44}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative;padding:18px 20px 18px 26px;box-shadow:0 2px 8px rgba(19,33,89,.05)}
+.card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--orange)}
+.card h3{margin:0 0 5px;font-size:16px;color:var(--navy)}.card p{color:#3d3d55;font-size:13.8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.num{width:30px;height:30px;border-radius:50%;background:var(--orange);color:#fff;font-weight:700;display:grid;place-items:center;font-size:14px;flex:none}
+.chead{display:flex;gap:12px;align-items:center;margin-bottom:6px}.chead h3{margin:0}
+.band{display:grid;grid-template-columns:repeat(3,1fr);background:#e8edf9;border-radius:14px;overflow:hidden}
+.band div{padding:16px 14px;text-align:center;border-right:1px solid #cfd8f0}.band div:last-child{border:0}
+.band b{display:block;color:var(--blue);font-size:19px}.band span{font-size:12.5px;color:var(--mute)}
+.callout{border-radius:14px;background:var(--peach);padding:16px 22px;border:1px solid #f4cfb3}.callout b{color:#a8480f;display:block;font-size:15px;margin-bottom:2px}
+.icon{width:40px;height:40px;border-radius:11px;background:var(--navy);display:grid;place-items:center;margin-bottom:10px}
+.icon svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:0 2px 8px rgba(19,33,89,.05)}
+.fcard h3{margin:0 0 5px;font-size:16px;color:var(--navy)}.fcard p{font-size:13.6px;color:#3d3d55}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:var(--navy);border-radius:16px;color:#fff;overflow:hidden}
+.steps div{padding:20px 20px;border-right:1px solid rgba(255,255,255,.14)}.steps div:last-child{border:0}
+.steps .n{color:#ffb27d;font-weight:800;font-size:12px;letter-spacing:.14em}.steps b{display:block;font-size:15.5px;margin:4px 0}.steps span{font-size:13px;color:#cdd5f3}
+.hero{background:linear-gradient(135deg,var(--navy),#1f3a8a);color:#fff;border-radius:18px;padding:24px 30px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(232,104,28,.22)}
+.hero .big{font-size:42px;font-weight:800;line-height:1;color:#ffb27d}.hero h2{color:#fff;margin:8px 0 8px;font-size:23px}.hero p{color:#dbe2f8;max-width:78%}
+.checks{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}.checks span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:600}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tl{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;box-shadow:0 2px 8px rgba(19,33,89,.05)}
+.step h3{margin:0 0 2px;font-size:15.5px;color:var(--navy)}.step p{font-size:13.2px;color:#3d3d55}
+.need{display:flex;flex-direction:column;gap:12px}
+.need div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;display:flex;gap:16px;align-items:center;font-size:15.5px;font-weight:600;color:var(--navy);box-shadow:0 2px 8px rgba(19,33,89,.05)}
+.tick{width:28px;height:28px;border-radius:50%;background:var(--orange);display:grid;place-items:center;flex:none}.tick svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.cta{background:var(--navy);color:#fff;border-radius:18px;padding:30px;text-align:center;position:relative;overflow:hidden}
+.cta:before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:var(--orange)}
+.cta h2{color:#fff;font-size:26px;margin-bottom:8px}.cta p{color:#cdd5f3;max-width:80%;margin:0 auto}
+.cta .ct2{display:inline-flex;gap:26px;margin-top:20px;font-weight:700;font-size:15px;color:#ffb27d}
+/* cover */
+.cover{background:var(--cream)}
+.top{background:var(--navy);height:300px;display:flex;align-items:center;justify-content:center;position:relative}
+.top img{height:104px}.top:after{content:"";position:absolute;left:0;right:0;bottom:0;height:7px;background:var(--orange)}
+.cbody{flex:1;padding:44px 64px 0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
+.cbody h1{font-size:44px}.sub{font-size:19px;color:var(--blue);font-weight:600;line-height:1.35}
+.pillc{background:var(--peach);border:1.5px solid var(--orange);color:#a8480f;font-weight:700;border-radius:99px;padding:8px 22px;font-size:13px;letter-spacing:.04em;margin-top:6px}
+.cbody .lead{max-width:540px;margin-top:6px}
+.hl{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;margin-top:14px;text-align:left}
+.prep{margin:0 64px 22px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 26px;box-shadow:0 2px 8px rgba(19,33,89,.06)}
+.prep div{display:flex;gap:24px;align-items:baseline;padding:4px 0;font-size:15px}.prep span{width:104px;font-size:11.5px;font-weight:700;letter-spacing:.12em;color:var(--mute)}.prep b{font-weight:650;color:var(--ink)}
+</style></head><body>
+
+<!-- 1 COVER -->
+<section class="page cover">
+ <div class="top"><img src="logo_cover.png"></div>
+ <div class="cbody">
+  <h1>Partnership Proposal</h1>
+  <div class="sub">Indoor Navigation &amp; Visitor Engagement<br>for Your Exhibition</div>
+  <div class="pillc">PILOT PARTNERSHIP &nbsp;·&nbsp; FIRST EXHIBITION FREE OF COST</div>
+  <p class="lead">Mapster is an indoor wayfinding and visitor engagement platform built for large venues like exhibitions, expos and trade shows, where finding the right stall, hall or facility is often the single biggest visitor frustration.</p>
+  <div class="hl">
+   <div class="fcard"><div class="icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h3>Turn by turn</h3><p>Indoor directions to every stall and hall</p></div>
+   <div class="fcard"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></div><h3>Treasure hunt</h3><p>Gamified footfall for every booth</p></div>
+   <div class="fcard"><div class="icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><h3>Live dashboard</h3><p>Real visitor and booth analytics</p></div>
+  </div>
+ </div>
+ <div class="prep"><div><span>PREPARED FOR</span><b>{{NAME}}</b></div><div><span>PREPARED BY</span><b>Team Mapster &nbsp;·&nbsp; mapster.co.in</b></div></div>
+ <div class="ft"><span>mapster.co.in</span><span>mapster.officials@gmail.com</span></div>
+</section>
+
+<!-- 2 WHO WE ARE + CHALLENGE -->
+<section class="page">
+ <div class="hd"><div class="brand"><img src="logo_icon.png">MAPSTER</div><div class="tag">EXECUTIVE SUMMARY</div></div>
+ <div class="ct">
+  <div><div class="kick">WHO WE ARE</div><h1>One app that guides every visitor</h1></div>
+  <p class="lead">Mapster is an indoor navigation and exhibition engagement platform: a single, installable web app that guides visitors turn by turn to any stall, hall or facility, while giving organizers real visibility into how their venue is actually being explored.</p>
+  <p>We built Mapster to solve a problem every large exhibition faces. Visitors spend more time searching for stalls than engaging with them, exhibitors in less obvious corners get overlooked, and organizers have no real data on visitor movement to show sponsors or plan the next event around.</p>
+  <div class="band"><div><b>Turn by turn</b><span>indoor wayfinding to every stall and hall</span></div><div><b>Gamified</b><span>treasure hunt drives footfall to every booth</span></div><div><b>Live</b><span>admin dashboard for visitor and booth analytics</span></div></div>
+  <div class="callout"><b>Ready today, not a concept</b>Mapster is a fully built, working platform already, not a pitch for something we still need to create. We are ready to bring it to your exhibition right away.</div>
+  <div style="margin-top:6px"><div class="kick">THE CHALLENGE</div><h2>What exhibitions struggle with today</h2></div>
+  <div class="grid2">
+   <div class="card"><div class="chead"><div class="num">1</div><h3>Visitors get lost</h3></div><p>Large venues with dozens or hundreds of stalls overwhelm visitors, with no digital way to search for a name, category or hall and be guided there.</p></div>
+   <div class="card"><div class="chead"><div class="num">2</div><h3>Low booth engagement</h3></div><p>Exhibitors away from the main entrance or a busy walkway are never found by a large share of visitors, which hurts their ROI and your renewals.</p></div>
+   <div class="card"><div class="chead"><div class="num">3</div><h3>No visitor insight</h3></div><p>Organizers rarely know which halls, stalls or categories visitors actually explored, data that matters to sponsors and to planning your next event.</p></div>
+   <div class="card"><div class="chead"><div class="num">4</div><h3>One way information</h3></div><p>Printed maps and static signage cannot be updated live for a schedule change, a moved stall or a time sensitive announcement.</p></div>
+  </div>
+ </div>
+ <div class="ft"><span>mapster.co.in &nbsp;·&nbsp; mapster.officials@gmail.com</span><span>02</span></div>
+</section>
+
+<!-- 3 SOLUTION -->
+<section class="page">
+ <div class="hd"><div class="brand"><img src="logo_icon.png">MAPSTER</div><div class="tag">OUR SOLUTION</div></div>
+ <div class="ct">
+  <div><div class="kick">WHAT YOU GET</div><h1>What Mapster brings to your venue</h1></div>
+  <p class="lead">One installable web app, with no app store download required, covering the whole visitor journey, plus a dashboard that gives you the visibility to run the event with confidence.</p>
+  <div class="grid2" style="grid-auto-rows:auto">
+   <div class="fcard"><div class="icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h3>Real time indoor navigation</h3><p>Turn by turn walking directions to any stall, hall, washroom or facility, accurate indoors where GPS alone fails.</p></div>
+   <div class="fcard"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div><h3>Searchable exhibition map</h3><p>A live, categorized directory of every exhibitor and stall. Visitors search by name or category and get routed instantly.</p></div>
+   <div class="fcard"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></div><h3>Treasure hunt and gamification</h3><p>Points, streaks and a leaderboard reward visitors for actually visiting stalls, turning footfall into a game that benefits every exhibitor, not just the ones near the entrance.</p></div>
+   <div class="fcard"><div class="icon"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div><h3>Announcements and guidebook</h3><p>Push notifications and an in app guidebook keep visitors current on schedule changes, offers and event info in real time.</p></div>
+   <div class="fcard"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><h3>Multi language support</h3><p>The app already speaks 7 Indian languages, so language is never a barrier to visitors finding their way.</p></div>
+   <div class="fcard"><div class="icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><h3>Admin dashboard and analytics</h3><p>Your team gets a live view of visitor activity, stall verifications and engagement, real data you can bring back to sponsors and exhibitors.</p></div>
+  </div>
+  <div><div class="kick" style="margin-bottom:8px">HOW A VISITOR USES IT</div></div>
+  <div class="steps">
+   <div><span class="n">STEP 1</span><b>Scan a QR code</b><span>At any entry point. Nothing to install.</span></div>
+   <div><span class="n">STEP 2</span><b>Search and follow</b><span>Find any stall or hall and get walking directions.</span></div>
+   <div><span class="n">STEP 3</span><b>Play and explore</b><span>Join the treasure hunt and earn points at every stall.</span></div>
+  </div>
+ </div>
+ <div class="ft"><span>mapster.co.in &nbsp;·&nbsp; mapster.officials@gmail.com</span><span>03</span></div>
+</section>
+
+<!-- 4 PILOT + ROLLOUT -->
+<section class="page">
+ <div class="hd"><div class="brand"><img src="logo_icon.png">MAPSTER</div><div class="tag">THE PILOT OFFER</div></div>
+ <div class="ct">
+  <div><div class="kick">WHY WE'RE REACHING OUT NOW</div><h1>Your first exhibition, completely free</h1></div>
+  <div class="hero"><div class="big">FREE</div><h2>We build, deploy and support everything</h2>
+   <p>Mapster is looking for its very first pilot exhibition partner. For your upcoming exhibition we will build, deploy and support the complete Mapster experience entirely free of cost.</p>
+   <div class="checks"><span>No license fee</span><span>No setup fee</span><span>No cost to your team</span><span>No long term commitment</span></div></div>
+  <div class="two">
+   <div class="card"><h3>What we ask in return</h3><p>Simply the opportunity to prove real value at your event, and to use it as our flagship case study.</p></div>
+   <div class="card"><h3>And after the pilot?</h3><p>Any further changes, customizations or new features for your event or future editions will be taken up exactly as per your requirements. We grow the platform around what you actually need.</p></div>
+  </div>
+  <div style="margin-top:4px"><div class="kick">HOW WE'LL WORK TOGETHER</div><h2>A simple, low effort rollout <span style="font-weight:500;color:var(--mute);font-size:15px">we handle the technical work end to end</span></h2></div>
+  <div class="tl">
+   <div class="step"><div class="num">1</div><div><h3>Kickoff call</h3><p>A short call to understand your venue, halls and exhibitor list.</p></div></div>
+   <div class="step"><div class="num">2</div><div><h3>Digital map setup</h3><p>We build the indoor map and load your exhibitor and stall data, with no work needed from your team.</p></div></div>
+   <div class="step"><div class="num">3</div><div><h3>Walkthrough and testing</h3><p>We test the live app with your team on site or over a call before it goes to visitors.</p></div></div>
+   <div class="step"><div class="num">4</div><div><h3>Go live</h3><p>QR codes and signage at entry points get visitors straight into the app. Nothing to install.</p></div></div>
+   <div class="step"><div class="num">5</div><div><h3>Live support</h3><p>Our team stays reachable through the exhibition itself.</p></div></div>
+   <div class="step"><div class="num">6</div><div><h3>Post event report</h3><p>A summary of visitor activity and engagement data from your event.</p></div></div>
+  </div>
+ </div>
+ <div class="ft"><span>mapster.co.in &nbsp;·&nbsp; mapster.officials@gmail.com</span><span>04</span></div>
+</section>
+
+<!-- 5 NEXT STEPS -->
+<section class="page">
+ <div class="hd"><div class="brand"><img src="logo_icon.png">MAPSTER</div><div class="tag">NEXT STEPS</div></div>
+ <div class="ct">
+  <div><div class="kick">GETTING STARTED</div><h1>What we'll need from your team</h1></div>
+  <p class="lead">Just four things, and we take care of the rest.</p>
+  <div class="need">
+   <div><span class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>Your venue's floor plan or hall layout</div>
+   <div><span class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>A list of exhibitors with their stall or booth numbers</div>
+   <div><span class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>Your event branding assets (logo, colors) for a co branded experience</div>
+   <div><span class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>One point of contact from your team for coordination</div>
+  </div>
+  <div class="cta"><h2>Let's talk</h2><p>We'd love to walk you through a live demo and finalize the details for your upcoming exhibition. Completely free, with nothing to lose.</p>
+   <div class="ct2"><span>mapster.officials@gmail.com</span><span>mapster.co.in</span></div></div>
+  <div><div class="kick" style="margin-top:6px">WHAT HAPPENS NEXT</div><h2>From hello to go live</h2></div>
+  <div class="steps" style="background:#fff;color:var(--ink);border:1px solid var(--line)">
+   <div style="border-color:var(--line)"><span class="n" style="color:var(--orange)">STEP 1</span><b style="color:var(--navy)">A quick call</b><span style="color:var(--mute)">We walk you through a live demo and answer your questions.</span></div>
+   <div style="border-color:var(--line)"><span class="n" style="color:var(--orange)">STEP 2</span><b style="color:var(--navy)">Share the basics</b><span style="color:var(--mute)">Send the four items above and we start building your map.</span></div>
+   <div style="border-color:var(--line)"><span class="n" style="color:var(--orange)">STEP 3</span><b style="color:var(--navy)">Test, then go live</b><span style="color:var(--mute)">We test it with your team, then visitors scan a QR code and go.</span></div>
+  </div>
+  <div class="grow" style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;gap:6px;padding-bottom:6px">
+   <div style="font-size:22px;font-weight:700;color:var(--navy)">Thank you for considering Mapster</div>
+   <div style="color:var(--mute)">We're excited about the possibility of being part of your event.</div></div>
+ </div>
+ <div class="ft"><span>mapster.co.in &nbsp;·&nbsp; mapster.officials@gmail.com</span><span>05</span></div>
+</section>
+</body></html>
