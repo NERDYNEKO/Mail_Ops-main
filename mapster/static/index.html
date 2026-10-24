@@ -218,8 +218,9 @@ function tabContact(i,c){const lock=i&&i.status!=='no draft'&&i.status!=='writte
  $('#df').innerHTML=`<button class="btn pri" id="sc">${i?'Save contact':'Add contact'}</button>${i?'<button class="btn dng" id="dc">Delete</button>':''}<span class="sp"></span><button class="btn" id="cl">Close</button>`;
  $('#cl').onclick=()=>closeDrawer();$('#sc').onclick=saveContact;if($('#dc'))$('#dc').onclick=delContact}
 async function saveContact(){const b={};['name','email','category','org','event','cover_name','website','about'].forEach(k=>b[k]=$('#f_'+k).value);
- if(!/^\S+@\S+\.\S+$/.test(b.email))return toast('Enter a valid email address','err');if(ST.open)b.old_email=ST.open;
- await api('/api/contact',b);ST.dirty=false;toast(ST.open?'Contact saved':'Contact added');ST.open=b.email.toLowerCase();ST.isNew=false;ST.tab=ST.tab;renderDrawer();renderRows()}
+ if(!/^\S+@\S+\.\S+$/.test(b.email))return toast('Enter a valid email address','err');const isNew=!ST.open;if(ST.open)b.old_email=ST.open;
+ await api('/api/contact',b);ST.dirty=false;toast(isNew?'Contact added':'Contact saved');
+ if(isNew){closeDrawer(true)}else{ST.open=b.email.toLowerCase();ST.isNew=false;ST.tab=ST.tab;renderDrawer();renderRows()}}
 async function delContact(){if(!await ask('Delete contact?',`Remove ${ST.open} and any unsent draft?`,'Delete',true))return;await api('/api/delete',{email:ST.open});toast('Deleted');closeDrawer(true)}
 /* email tab */
 function tabEmail(i,c){const locked=['sent','replied','bounced','stopped'].includes(i.status);
